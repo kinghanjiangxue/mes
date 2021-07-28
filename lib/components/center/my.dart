@@ -61,7 +61,7 @@ class _MyState extends State<My>{
 
         // 列表
         final list = Padding(
-            padding: EdgeInsets.symmetric(horizontal:10,vertical:8),
+            padding: const EdgeInsets.symmetric(horizontal:10,vertical:8),
             child: Column(
                 children: <Widget>[
                     ListTile(
@@ -128,7 +128,7 @@ class _MyState extends State<My>{
                     children: <Widget>[
                         head,
                         contain,
-                        Container(height: 15,color: Color(0xfff2f2f2)),
+                        Container(height: 15,color: const Color(0xfff2f2f2)),
                         list
                     ],
                 ),

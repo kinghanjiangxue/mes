@@ -78,7 +78,20 @@ class _LayoutState extends State<Layout>{
             Icons.extension,
             color: Theme.of(context).primaryColor,
         ),
-        title: const Text('Flutter 集录'),
+        title: const Text(
+            'Flutter 集录',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                color: Colors.blue,
+                fontSize: 18.0,
+                height: 1.2,
+                fontFamily: "Courier",
+                // background: ,
+                decoration:TextDecoration.underline,
+                decorationStyle: TextDecorationStyle.dashed
+            ),
+
+        ),
         children: <Widget>[
             _buildItem(context,  '属性集录', ''),
             _buildItem(context,  '绘画集录', 'UnitRouter.galley'),
@@ -99,8 +112,10 @@ class _LayoutState extends State<Layout>{
             Icon(Icons.chevron_right, color: Theme.of(context).primaryColor),
             onTap: () {
                 if (linkTo != null && linkTo.isNotEmpty) {
+                    print("object");
                     Navigator.of(context).pushNamed(linkTo);
                     if(onTap!=null) onTap();
+
                 }
             },
         );

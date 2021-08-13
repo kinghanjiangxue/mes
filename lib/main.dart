@@ -1,23 +1,47 @@
+import 'package:mes/provider/navigation_provider.dart';
+import 'package:mes/widget/navigation_drawer_widget.dart';
 import 'package:flutter/material.dart';
-import './router/index.dart';
-import 'dart:io';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
-void main() {
-  runApp(new MyApp());
-  if(Platform.isAndroid){ // 设置状态栏背景及颜色
-    SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(statusBarColor: Colors.transparent);
-    SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
-  }
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  static final String title = 'Navigation Drawer';
+
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: '登录Demo',
-      debugShowCheckedModeBanner: false,
-      routes: routes,
-    );
-  }
+  Widget build(BuildContext context) => ChangeNotifierProvider(
+        create: (context) => NavigationProvider(),
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: title,
+          theme: ThemeData(primarySwatch: Colors.deepOrange),
+          home: MainPage(),
+        ),
+      );
+}
+
+class MainPage extends StatefulWidget {
+  @override
+  _MainPageState createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
+  @override
+  Widget build(BuildContext context) => Scaffold(
+        drawer: NavigationDrawerWidget(),
+        appBar: AppBar(
+          backgroundColor: Colors.red,
+          title: Text(MyApp.title),
+          centerTitle: true,
+        ),
+      );
 }
